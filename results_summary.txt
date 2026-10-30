@@ -1,0 +1,14 @@
+case                                                       tub  mol  SD/Da   mis%   +prot   mis%
+A  random tubes, slit +-0.05 L, tension steps 3e-5 [MAIN]   40  880   15.0    0.5    17.0    0.8
+B  random tubes, window +-0.10 L, tension steps 3e-5        40  880   31.3    9.4    32.5   11.0
+C  "mild" tube, slit, tension steps 3e-5                    40  880   19.8    2.2    21.5    3.1
+D  "mild" tube, slit, no tension steps                      20  440   18.6    1.8    20.4    1.8
+E  "mild" tube, slit, tension steps 1e-4                    20  440   36.5   10.5    37.6   12.5
+F  "mild" tube, slit, tension fitted as 3rd unknown, no steps  20  440  127.1   36.4   128.1   35.9
+G  "mild" tube, slit, 13.7 kDa pair (RNase A, +80 Da)       20  300   32.4   10.0
+H  ideal tube, no noise, no nuisances (analysis floor)       8  176    8.7    0.0
+I  ideal tube, frequency noise only                          8  176    9.4    0.0
+J  ideal tube, charge offsets only                           8  176    8.7    0.0
+K  "mild" tube, no noise, no nuisances                       8  176   16.3    0.6
+L  'mild' tube, landings along the whole tube (80 tubes): fraction estimated within 0.05 L of centre 0.10; usable molecules per tube (central, first 5 landings) 0.35
+Case A per-tube SD: 8.3-22.8 Da, median 13.3 Da
