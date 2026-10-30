@@ -10,20 +10,21 @@ Author: Stefan Forstner (ICFO). Licence: MIT (see `LICENSE`).
 
 ## Reproducing the results
 
-Requirements: Python ≥ 3.10, numpy and scipy (`pip install -r requirements.txt`). All scripts run from
-this folder and read and write their result files here.
+Requirements: Python ≥ 3.9, numpy and scipy (`pip install -r requirements.txt`). All scripts run from
+this folder and read and write their result files here. The commands below work on Windows, Linux and
+macOS (use `python3` instead of `python` where that is the interpreter's name).
 
 ```bash
 # results table from the stored runs (seconds)
-python3 summarize.py
+python summarize.py
 
 # main result: 15 Da mechanical, 17 Da with protein-specific terms, 0.8% misassigned; writes hist_final.json
-python3 final_numbers2.py
+python final_numbers2.py
 
-# re-run the main case (A) from scratch: 40 tubes, about 6 s per tube on one core
-python3 batch_random.py rA $(seq -s, 600 619)
-python3 batch_random.py rB $(seq -s, 620 639)
-python3 final_numbers2.py
+# re-run the main case (A) from scratch: 40 tubes, about 6-20 s per tube on one core
+python batch_random.py rA 600,601,602,603,604,605,606,607,608,609,610,611,612,613,614,615,616,617,618,619
+python batch_random.py rB 620,621,622,623,624,625,626,627,628,629,630,631,632,633,634,635,636,637,638,639
+python final_numbers2.py
 ```
 
 The other cases are re-run the same way with the scripts listed under Files. Every run is seeded.
@@ -77,7 +78,7 @@ nodes.
 - Added as Gaussian noise of 7 Da (deposited species) and 5 Da (mass scale).
 - These are assumed bounds, not simulated physics.
 
-## Results (`python3 summarize.py`, also in `results_summary.txt`)
+## Results (`python summarize.py`, also in `results_summary.txt`)
 
 "Mech." is the residual standard deviation after the per-tube correction. "+protein" adds the 7 and 5 Da
 terms. "Misassigned" uses a threshold at 8604.8 Da.
@@ -167,14 +168,14 @@ floor is numerical. On the "mild" tube the error stays at about 18 Da either way
 
 | Script | Cases | Usage |
 |---|---|---|
-| `batch_random.py` | A, B | `python3 batch_random.py <tag> <seed,seed,...> [sigma_tau] [window]` |
-| `batch_tension.py` | C–F | `python3 batch_tension.py <sigma_tau> fixed\|free <tag> [seeds]` |
-| `batch.py` | D (no tension steps), L | `python3 batch.py mild <seeds> <tag> [window]` |
-| `heavy.py` | G | `python3 heavy.py <seeds>` |
-| `decompose.py` | H–K | `python3 decompose.py ideal_clean\|noise_only\|charge_only\|tube_only` |
-| `noise_sweep.py` | stability sweep | `python3 noise_sweep.py <allan_dev> <tag> <seeds>` |
-| `window_noise.py` | slit × stability | `python3 window_noise.py <allan_dev> <window> <tag>` |
-| `refine_test.py` | fitting precision | `python3 refine_test.py ideal mild` |
+| `batch_random.py` | A, B | `python batch_random.py <tag> <seed,seed,...> [sigma_tau] [window]` |
+| `batch_tension.py` | C–F | `python batch_tension.py <sigma_tau> fixed\|free <tag> [seeds]` |
+| `batch.py` | D (no tension steps), L | `python batch.py mild <seeds> <tag> [window]` |
+| `heavy.py` | G | `python heavy.py <seeds>` |
+| `decompose.py` | H–K | `python decompose.py ideal_clean\|noise_only\|charge_only\|tube_only` |
+| `noise_sweep.py` | stability sweep | `python noise_sweep.py <allan_dev> <tag> <seeds>` |
+| `window_noise.py` | slit × stability | `python window_noise.py <allan_dev> <window> <tag>` |
+| `refine_test.py` | fitting precision | `python refine_test.py ideal mild` |
 
 **Analysis:**
 - `analyze_tension.py`: per-tube reference correction and statistics, used by all summaries.
